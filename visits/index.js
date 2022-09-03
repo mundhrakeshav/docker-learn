@@ -21,7 +21,7 @@ client.connect().then(async () => {
 
 app.get("/", async (req, res) => { 
     try {
-        process.exit(1);
+        // process.exit(1); 
         const visits = await client.get("visits");
         res.send("No of visits is" + visits);
         client.set("visits", parseInt(visits) + 1);
