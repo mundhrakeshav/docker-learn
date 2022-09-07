@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+  pull_request:
+    branches: 
+      - master
+      - dev
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile.dev --tag mundhrakeshav/frontend
+    - name: Run tests
+      run: docker run -e CI=true mundhrakeshav/frontend npm run test
